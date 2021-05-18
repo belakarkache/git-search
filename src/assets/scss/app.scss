@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
+@import "./variables.scss";
+
+* {
+    font-family: "Montserrat", sans-serif;
+    outline: none;
+}
+
+body,
+html {
+    background-color: #f8fafb;
+    margin: 0;
+    padding: 0;
+}
+
+#nav {
+    background-color: white;
+    box-shadow: $shadow;
+    height: 60px;
+    padding: 0 230px;
+    .router-link-active {
+        text-decoration: none;
+    }
+    .nav {
+        display: flex;
+        align-items: center;
+        &__logo {
+            width: 50px;
+            height: 50px;
+        }
+        &__title {
+            font-size: 20px;
+            font-weight: 600;
+            text-decoration: none;
+            color: black;
+            margin-left: 5px;
+        }
+    }
+}
+
+.search {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        text-align: center;
+        width: 420px;
+        .invalid {
+            &__input {
+                border-color: $red;
+            }
+            &__label {
+                text-align: left;
+                color: $red;
+                padding: 5px 0;
+                font-size: 0.8rem;
+            }
+        }
+        &-image {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto;
+        }
+        &-input {
+            width: 370px;
+            height: 35px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            padding: 5px 25px;
+            margin: 0 auto;
+        }
+        &-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            button {
+                width: 200px;
+                height: 50px;
+                border-radius: 4px;
+                border: none;
+                color: white;
+                font-weight: 600;
+                cursor: pointer;
+                &.blue-bg {
+                    background-color: $blue;
+                }
+                &.green-bg {
+                    background-color: $green;
+                }
+            }
+        }
+    }
+}
+
+.show-users {
+    height: 80vh;
+    width: 80vw;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: $shadow;
+    &__user {
+        img {
+            width: 100px;
+            border-radius: 50%;
+            height: 100px;
+        }
+    }
+}
