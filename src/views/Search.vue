@@ -14,9 +14,9 @@
         placeholder="Pesquisar..."
         :class="invalid ? 'invalid__input' : ''"
       />
-      <span v-if="invalid" class="invalid__label"
-        >Preencha o campo para buscar</span
-      >
+      <span v-if="invalid" class="invalid__label">
+        Preencha o campo para buscar
+      </span>
       <div class="search__wrapper-actions">
         <button class="blue-bg" @click="loadAll">Ver Todos</button>
         <button class="green-bg" @click="loadResults">Buscar</button>

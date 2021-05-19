@@ -11,6 +11,20 @@
           <h2 class="nav__title">GitSearch</h2>
         </span>
       </router-link>
+
+      <router-link to="/">
+        <span class="nav-mobile">
+          <img src="./assets/images/arrow-icon.png" />
+          <p class="nav-mobile__title">Lista de Usuários</p>
+        </span>
+      </router-link>
+
+      <router-link to="/show-users" v-if="$route.path === 'profile'">
+        <span class="nav-mobile">
+          <img src="./assets/images/arrow-icon.png" />
+          <p class="nav-mobile__title">Perfil</p>
+        </span>
+      </router-link>
     </div>
     <transition name="fade">
       <router-view />
@@ -21,7 +35,7 @@
 <style lang="scss">
 .fade-enter-active,
 .fade-leave-active {
-  transition-duration: 0.3s;
+  transition-duration: 0.2s;
   transition-property: opacity;
   transition-timing-function: ease;
 }
