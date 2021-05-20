@@ -36,6 +36,7 @@ export default {
   methods: {
     loadResults() {
       if (this.query) {
+        localStorage.setItem("query", this.query);
         this.$router.push({
           name: "ShowUsers",
           params: { query: this.query, isSearch: true },

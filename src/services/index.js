@@ -12,3 +12,13 @@ export const searchUsers = (query, page) => octokit.request('GET /search/users',
     per_page: 10,
     page,
 })
+
+export const findUser = (username) => octokit.request('GET /users/{username}', {
+    username,
+})
+
+export const findRepos = (username, page) => octokit.request('GET /users/{username}/repos', {
+    username,
+    per_page: 8,
+    page,
+})

@@ -12,14 +12,14 @@
         </span>
       </router-link>
 
-      <router-link to="/">
+      <router-link to="/" v-if="$route.path !== '/profile'">
         <span class="nav-mobile">
           <img src="./assets/images/arrow-icon.png" />
           <p class="nav-mobile__title">Lista de Usuários</p>
         </span>
       </router-link>
 
-      <router-link to="/show-users" v-if="$route.path === 'profile'">
+      <router-link to="/show-users" v-if="$route.path === '/profile'">
         <span class="nav-mobile">
           <img src="./assets/images/arrow-icon.png" />
           <p class="nav-mobile__title">Perfil</p>

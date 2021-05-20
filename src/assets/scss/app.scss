@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap");
 @import "./variables.scss";
+@import "./github-languages-colors.scss";
 
 /* General styles */
 * {
@@ -9,9 +10,9 @@
 
 body,
 html {
-    background-color: #f8fafb;
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 /* Navbar */
@@ -131,6 +132,19 @@ html {
     background-color: white;
     box-shadow: $shadow;
     padding: 20px;
+    .scroll-to-top {
+        background-color: $blue;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        box-shadow: $shadow;
+    }
     &__search {
         input {
             height: 35px;
@@ -175,6 +189,105 @@ html {
                 font-size: 15px;
                 font-weight: 600;
                 color: $dark-blue;
+            }
+        }
+    }
+}
+
+/* Profile View */
+.profile {
+    &__header {
+        height: 145px;
+        position: relative;
+        background: url("../images/profile-cover.png");
+        background-size: cover;
+        background-position: center;
+        &-user-info {
+            text-align: center;
+            img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 5px solid #eceff1;
+                margin-top: 42px;
+            }
+            h2 {
+                margin: 0;
+                color: $dark-blue;
+            }
+            h4 {
+                margin: 5px 0;
+                color: #90a4ae;
+                font-weight: 400;
+                i {
+                    font-size: 10px;
+                    vertical-align: baseline;
+                }
+            }
+        }
+    }
+    &__actions {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 110px;
+        &-action {
+            text-align: center;
+            color: $dark-blue;
+            font-weight: 600;
+            i {
+                width: 20px;
+                height: 20px;
+                margin-right: 5px;
+            }
+            span {
+                margin-left: 2px;
+            }
+            p {
+                margin-top: 10px;
+                font-size: 14px;
+                white-space: break-spaces;
+            }
+        }
+    }
+    &__tabs {
+        &-buttons {
+            margin-top: 10px;
+            button {
+                width: 50%;
+                height: 50px;
+                border: 3px solid transparent;
+                font-weight: 600;
+                background-color: #f7f9fa;
+                color: black;
+                &.active {
+                    border-bottom: 3px solid $blue;
+                }
+                &:first-child {
+                    border-right: 1px solid #dae5f0;
+                }
+            }
+        }
+        &-content {
+            padding: 20px;
+            h3 {
+                color: $dark-blue;
+                font-weight: 600;
+                font-size: 18px;
+            }
+            h4 {
+                font-size: 16px;
+                color: $dark-blue;
+                font-weight: 600;
+            }
+            .extra-information {
+                span {
+                    display: flex;
+                    align-items: center;
+                }
+                svg {
+                    color: $dark-blue;
+                    margin-right: 5px;
+                }
             }
         }
     }
