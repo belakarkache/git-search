@@ -6,7 +6,6 @@
         type="text"
         v-model="query"
         placeholder="Pesquisar..."
-        @blur="searchInside"
         @keypress.enter="searchInside"
       />
     </div>
@@ -22,11 +21,11 @@
       </div>
       <Message v-if="noMoreUsers" :content="content" />
     </div>
-    <observer @intersect="loadMoreResults" />
     <button class="scroll-to-top" @click="scrollToTop">
       <i class="fas fa-angle-up"></i>
     </button>
     <Spinner :loading="loading" />
+    <observer @intersect="loadMoreResults" />
   </div>
 </template>
 
@@ -48,9 +47,10 @@ export default {
       noMoreUsers: false,
       loading: false,
       content: {
-        title: "Não encontrou o que procurava?",
+        title: "Sem resultados",
         message: "Tente buscar novamente com outras palavras :)",
       },
+      noMoreSearch: false,
     };
   },
   methods: {
@@ -59,11 +59,16 @@ export default {
         this.loading = true;
         searchUsers(this.data.query, this.page++)
           .then((resp) => {
-            if (this.page === 1) {
+            const total = resp.data.total_count;
+            if (this.page === 0) {
               this.results = resp.data.items;
             }
             this.results.push(...resp.data.items);
             if (resp.data.items.length === 0) {
+              this.noMoreUsers = true;
+            }
+            if (total <= 10) {
+              this.content.title = "Não encontrou o que procurava?";
               this.noMoreUsers = true;
             }
           })

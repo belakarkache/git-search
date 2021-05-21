@@ -1,5 +1,5 @@
 <template>
-  <div class="observer"></div>
+  <div class="observer" />
 </template>
 
 <script>
@@ -16,8 +16,13 @@ export default {
         this.$emit("intersect");
       }
     });
-
     this.observer.observe(this.$el);
   },
 };
 </script>
+
+<style lang="scss">
+.observer {
+  height: 50px;
+}
+</style>

@@ -15,6 +15,13 @@ html {
     scroll-behavior: smooth;
 }
 
+@media (min-width: 769px) {
+    body,
+    html {
+        background-color: #f8fafb;
+    }
+}
+
 /* Navbar */
 #nav {
     background-color: white;
@@ -24,37 +31,44 @@ html {
     .nav {
         display: none;
     }
-    .nav-mobile {
-        display: flex;
-        align-items: center;
-        padding: 5px 20px;
-        position: relative;
-        img {
-            width: 16px;
-            height: 16px;
-            margin-right: 10px;
-        }
-        p {
-            font-size: 14px;
-            font-weight: 600;
-            color: black;
-        }
-        &::after {
-            content: "";
-            background-color: #90a4ae;
-            width: 90%;
-            height: 1px;
-            position: absolute;
-            bottom: 0;
+    @media (max-width: 769px) {
+        .nav-mobile {
+            display: flex;
+            align-items: center;
+            padding: 5px 20px;
+            position: relative;
+            img {
+                width: 16px;
+                height: 16px;
+                margin-right: 10px;
+            }
+            p {
+                font-size: 14px;
+                font-weight: 600;
+                color: black;
+            }
+            &::after {
+                content: "";
+                background-color: #90a4ae;
+                width: 90%;
+                height: 1px;
+                position: absolute;
+                bottom: 0;
+            }
         }
     }
     @media (min-width: 769px) {
+        .nav-mobile {
+            display: none;
+        }
         .nav {
             display: flex;
             align-items: center;
+            box-shadow: $shadow;
             &__logo {
                 width: 50px;
                 height: 50px;
+                margin-left: 230px;
             }
             &__title {
                 font-size: 20px;
@@ -194,6 +208,36 @@ html {
     }
 }
 
+@media (min-width: 1201px) {
+    .show-users {
+        width: 900px;
+        margin-top: 50px;
+        box-shadow: $shadow;
+        padding: 80px;
+        &__wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            &__user {
+                width: 180px;
+                height: 270px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid #dedede;
+                box-sizing: border-box;
+                &:last-child {
+                    border: 1px solid #dedede;
+                }
+                img {
+                    width: 100px;
+                    margin: 0;
+                    height: 100px;
+                }
+            }
+        }
+    }
+}
+
 /* Profile View */
 .profile {
     &__header {
@@ -240,7 +284,7 @@ html {
                 margin-right: 5px;
             }
             span {
-                margin-left: 2px;
+                margin-left: 5px;
             }
             p {
                 margin-top: 10px;
@@ -268,7 +312,7 @@ html {
             }
         }
         &-content {
-            padding: 20px;
+            padding: 20px 25px;
             h3 {
                 color: $dark-blue;
                 font-weight: 600;
@@ -278,6 +322,7 @@ html {
                 font-size: 16px;
                 color: $dark-blue;
                 font-weight: 600;
+                margin: 10px;
             }
             .extra-information {
                 span {
@@ -287,6 +332,41 @@ html {
                 svg {
                     color: $dark-blue;
                     margin-right: 5px;
+                }
+            }
+            .project {
+                h3 {
+                    a {
+                        font-size: 14px;
+                        color: #0366d6;
+                        font-weight: 600;
+                        text-decoration: none;
+                    }
+                }
+                p {
+                    font-weight: 600;
+                    color: #586069;
+                    font-size: 10px;
+                }
+                border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+                &:last-child {
+                    border: none;
+                }
+                &__footer {
+                    font-size: 8px;
+                    display: flex;
+                    justify-content: space-between;
+                    &-language {
+                        display: flex;
+                        align-items: center;
+                        .language-circle {
+                            width: 8px;
+                            height: 8px;
+                            display: block;
+                            border-radius: 50%;
+                            margin-right: 5px;
+                        }
+                    }
                 }
             }
         }
