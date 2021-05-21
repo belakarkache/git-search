@@ -2,7 +2,7 @@
 
 ## Published project link
 
-https://isabela-karkache-git-search.herokuapp.com/#/
+[Git Search](https://isabela-karkache-git-search.herokuapp.com/#/)
 
 ## Project setup
 ```
