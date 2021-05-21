@@ -1,5 +1,9 @@
 # git-search
 
+## Published project link
+
+https://isabela-karkache-git-search.herokuapp.com/#/
+
 ## Project setup
 ```
 npm install
