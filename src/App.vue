@@ -20,7 +20,7 @@
       </router-link>
 
       <router-link to="/show-users" v-if="$route.path === '/profile'">
-        <span class="nav-mobile">
+        <span class="nav-mobile profile">
           <img src="./assets/images/arrow-icon.png" />
           <p class="nav-mobile__title">Perfil</p>
         </span>

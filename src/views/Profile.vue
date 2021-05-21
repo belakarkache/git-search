@@ -45,58 +45,66 @@
       </div>
 
       <div class="profile__tabs-content">
-        <div v-if="showAboutTab">
-          <div class="user-information" v-if="user.bio">
-            <h3>Bio</h3>
-            <p>{{ user.bio }}</p>
-          </div>
+        <transition name="fade">
+          <div v-if="showAboutTab">
+            <div class="user-information" v-if="user.bio">
+              <h3>Bio</h3>
+              <p>{{ user.bio }}</p>
+            </div>
 
-          <div class="extra-information">
-            <span>
-              <i class="fas fa-home"></i>
-              <h4>{{ user.location || "Desconhecido" }}</h4>
-            </span>
-
-            <span>
-              <i class="fas fa-laptop"></i>
-              <h4>{{ user.blog || "Não preencheu" }}</h4>
-            </span>
-          </div>
-        </div>
-        <div v-if="showProjectsTab">
-          <div v-for="project in projects" :key="project.id" class="project">
-            <h3>
-              <a :href="project.html_url" target="_blank">{{ project.name }}</a>
-            </h3>
-            <p>{{ project.description }}</p>
-
-            <div class="project__footer">
-              <span class="project__footer-language">
-                <span :class="project.language" class="language-circle" />
-                <p>{{ project.language }}</p>
+            <div class="extra-information">
+              <span>
+                <i class="fas fa-home"></i>
+                <h4>{{ user.location || "Desconhecido" }}</h4>
               </span>
-              <p>Atualizado em {{ formatDate(project.updated_at) }}</p>
+
+              <span>
+                <i class="fas fa-laptop"></i>
+                <h4>{{ user.blog || "Não preencheu" }}</h4>
+              </span>
             </div>
           </div>
-          <Message v-if="noMoreProjects" :content="content" />
-        </div>
+        </transition>
+        <transition name="fade">
+          <div v-if="showProjectsTab">
+            <div v-for="project in projects" :key="project.id" class="project">
+              <div class="header">
+                <h3>
+                  <a :href="project.html_url" target="_blank">{{
+                    project.name
+                  }}</a>
+                </h3>
+                <p>{{ project.description }}</p>
+              </div>
+
+              <div class="project__footer">
+                <span class="project__footer-language">
+                  <span :class="project.language" class="language-circle" />
+                  <p>{{ project.language }}</p>
+                </span>
+                <p>Atualizado em {{ formatDate(project.updated_at) }}</p>
+              </div>
+            </div>
+            <Message v-if="noMoreProjects" :content="content" />
+          </div>
+        </transition>
       </div>
     </div>
-    <observer @intersect="loadMoreResults" />
     <Spinner :loading="loading" />
+    <ScrollToTop v-if="showScrollToTop" />
   </div>
 </template>
 
 <script>
 import { findUser, findRepos } from "../services/index";
 import { format } from "date-fns";
-import Observer from "../components/Observer";
 import Spinner from "../components/Spinner";
 import Message from "../components/Message";
+import ScrollToTop from "../components/ScrollToTop";
 
 export default {
   name: "Profile",
-  components: { Observer, Spinner, Message },
+  components: { Spinner, Message, ScrollToTop },
   data() {
     return {
       user: {},
@@ -110,10 +118,15 @@ export default {
         title: "Fim da lista",
         message: "Não foram encontrados mais projetos",
       },
+      showScrollToTop: false,
     };
   },
   mounted() {
+    this.scrolled();
     this.fetchUserInfo();
+  },
+  beforeMount() {
+    this.getInitialProjects();
   },
   methods: {
     fetchUserInfo() {
@@ -137,10 +150,6 @@ export default {
       }
       return date;
     },
-    scrollToTop() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
-    },
     loadMoreResults() {
       if (!this.noMoreProjects) {
         findRepos(this.$route.params.user.login, this.page++)
@@ -159,9 +168,20 @@ export default {
       }
       return;
     },
+    getInitialProjects() {
+      this.loadMoreResults();
+    },
+    scrolled() {
+      window.onscroll = () => {
+        let windowBottom =
+          document.documentElement.scrollTop + window.innerHeight ===
+          document.documentElement.offsetHeight;
+        if (windowBottom) {
+          this.showScrollToTop = true;
+          this.loadMoreResults();
+        }
+      };
+    },
   },
 };
 </script>
-
-<style>
-</style>
